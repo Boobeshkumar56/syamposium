@@ -1,149 +1,720 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CYNOSURE 2025</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Stars Background -->
-    <div class="stars"></div>
-    <div class="twinkling"></div>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CYNOSURE 2025 - College Symposium</title>
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="styles.css">
+         <link rel="stylesheet" href="cardstyle.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r122/three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.globe.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+        <script type="module" src="https://unpkg.com/@google/model-viewer"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <!-- Header Section -->
-    <header>
-        <nav class="nav-container">
-            <div class="logo">CYNOSURE 2025</div>
-            <div class="nav-toggle" id="navToggle">
-                <span></span><span></span><span></span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/GLTFLoader.js"></script>
 
-    <!-- Main Banner Section -->
-    <section id="home" class="main-banner">
-        <div class="banner-content">
-            <h1 class="glow-text">CYNOSURE 2025</h1>
-            <p class="subtitle">PINNACLE OF EXUBERANCE</p>
-            <div class="date-venue">
-                <p>March 25-26, 2025</p>
-                <p>Tech Galaxy Campus</p>
-            </div>
-            <button class="register-btn">Register Now</button>
+
+        <style>
+            
+/* Card Container */
+.alien{
+    position: absolute;
+    z-index: 1;
+    bottom:1px;
+
+    
+    
+
+}
+.card-container {
+    perspective: 1600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+/* Main Card */
+#card {
+    width: 900px;
+    height: 500px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease-in-out, scale 0.5s ease-in-out;
+    transform-origin: center;
+
+}
+
+/* .card-container:hover #card {
+    transform: rotateY(180deg) scale(1.1);}  */
+
+  
+
+
+/* Front Side */
+.card-front {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    background: url('https://i.pinimg.com/474x/b7/04/2a/b7042af05a5c8e445d1e547fc00e549b.jpg') no-repeat center center/cover;
+}
+
+/* Back Side */
+.card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #1a1a2e, #16213e); /* Different back background */
+}
+.gift-box{
+    width:150px;
+    height:100px;
+    position: relative;
+    left:10rem;
+    bottom:-12rem;
+
+}
+.card-container .card {
+  transition: transform 0.5s ease;
+}
+
+.card-container.flipped #card {
+  transform: rotateY(180deg) scale(1.1); /* Flip + Zoom */
+}
+
+
+
+
+
+
+
+
+/* Floating Animation */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Text Section */
+.card-front .text {
+    width: 50%;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    top:-15rem;
+    left:10rem
+}
+
+/* Mini Cards */
+.mini-card {
+    width: 40%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 22px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    text-align: center;
+}
+
+.mini-card:hover {
+    transform: scale(1.1);
+}
+
+/* Three.js Canvas */
+canvas {
+    display: block;
+}
+
+            .star {
+            position: absolute;
+            border-radius: 50%;
+            width: 5px;
+            height: 5px;
+            animation: fall 2s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(300px);
+                opacity: 0;
+            }
+        }
+            @font-face {
+                font-family: 'dashhorizon';
+                src: url('./fonts/myfont.otf') format('truetype');
+            }
+            .card-carousel {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      perspective: 2000px;
+    }
+    .inner-carousel {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform-style: preserve-3d;
+    }
+    .r-card {
+    position: absolute;
+    width: 250px;
+    height: 350px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    box-shadow: 0px 10px 15px rgba(0, 54, 90, 0.3);
+    text-align: center;
+    color: black;
+    padding: 10px;
+    transition: transform 0.5s ease-out, box-shadow 0.5s ease-out; /* Add smooth transform and shadow transition */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+}
+
+.r-card img {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth transition for the tilt effect */
+}
+
+/* Hover effect: the card lifts up */
+.r-card:hover {
+    transform: translateY(-10px); /* Lifts the card */
+    box-shadow: 0px 20px 30px rgba(0, 54, 90, 0.3); /* Adds a shadow when hovering */
+}
+
+.r-card:hover img {
+    transform: scale(1.1); /* Slightly scale the image when hovering */
+}
+    .r-card h4 {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: black;
+    }
+    .tet{
+        padding-left: 5rem;
+    }
+ 
+
+            </style>
+        <script>
+            const angle = 20;
+const rotateCard = window;
+
+const lerp = (start, end, amount) => {
+	return (1 - amount) * start + amount * end;
+};
+
+const remap = (value, oldMax, newMax) => {
+	const newValue = ((value + oldMax) * (newMax * 2)) / (oldMax * 2) - newMax;
+	return Math.min(Math.max(newValue, -newMax), newMax);
+};
+
+window.addEventListener("DOMContentLoaded", (event) => {
+	const cards = document.querySelectorAll(".card");
+	cards.forEach((e) => {
+		e.addEventListener("mousemove", (event) => {
+			const rect = e.getBoundingClientRect();
+			const centerX = (rect.left + rect.right) / 2;
+			const centerY = (rect.top + rect.bottom) / 2;
+			const posX = event.pageX - centerX;
+			const posY = event.pageY - centerY;
+			const x = remap(posX, rect.width / 2, angle);
+			const y = remap(posY, rect.height / 2, angle);
+			e.dataset.rotateX = x;
+			e.dataset.rotateY = -y;
+		});
+
+		e.addEventListener("mouseout", (event) => {
+			e.dataset.rotateX = 0;
+			e.dataset.rotateY = 0;
+		});
+	});
+
+	const update = () => {
+		cards.forEach((e) => {
+			let currentX = parseFloat(e.style.getPropertyValue('--rotateY').slice(0, -1));
+			let currentY = parseFloat(e.style.getPropertyValue('--rotateX').slice(0, -1));
+			if (isNaN(currentX)) currentX = 0;
+			if (isNaN(currentY)) currentY = 0;
+			const x = lerp(currentX, e.dataset.rotateX, 0.05);
+			const y = lerp(currentY, e.dataset.rotateY, 0.05);
+			e.style.setProperty("--rotateY", x + "deg");
+			e.style.setProperty("--rotateX", y + "deg");
+		})
+	}
+	setInterval (update,1000/60)
+});
+
+             window.addEventListener("load", function () {
+            VANTA.GLOBE({
+                el: "#space",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                highlightColor: 0xff2483,
+                midtoneColor: 0xff65bd,
+                lowlightColor: 0x0088ff,
+                blurFactor: 0.5,
+                speed: 1.00,
+                zoom: 1.00
+            });
+        });
+        function flipCard() {
+  var cardContainer = document.querySelector('.card-container');
+  cardContainer.classList.toggle('flipped');
+  
+  // Toggle back to the original state after 10 seconds (10000 milliseconds)
+  setTimeout(function() {
+    cardContainer.classList.toggle('flipped');
+  }, 5000);
+}
+
+        
+        </script>
+    </head>
+    <body>
+        <!-- Stars Background -->
+      
+        
+
+        <!-- Header Section -->
+        <header>
+            <nav class="nav-container">
+                <div class="logo">CYNOSURE 2025</div>
+                <div class="college-info">
+                    <img src="KITE.png" alt="College Logo"style="width:100px; height:50px" class="-logo">
+                    
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span><span></span><span></span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Banner Section -->
+        <div id="space">
+            <section id="home" class="main-banner">
+                <div class="banner-content">
+                    <h1 class="glow-text">CYNOSURE 2025</h1>
+                    <p class="subtitle">Explore the Universe of Events</p>
+                    <div class="date-venue">
+                        <p>APRIL 04, 2025</p>
+                        <p><h2 style="font-size: 15px;">Kgisl Institute Of Technology</h2></p>
+                    </div>
+                    <button class="register-btn " onclick="window.open('https://forms.gle/Vi6rVrphM1qzyCJPA', '_blank')">Register Now</button>
+                </div>
+            </section>
         </div>
-    </section>
+        
 
-    <!-- Events Section -->
-    <section id="events" class="events-section">
-        <h2 class="section-title">Technical Events</h2>
-        <div class="event-container">
-            <!-- Technical Events -->
-            <div class="event-grid">
-                <div class="event-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img src="images/hackathon.jpg" alt="Hackathon">
-                            <h3>Cosmic Code</h3>
-                        </div>
-                        <div class="card-back">
-                            <h3>Hackathon</h3>
-                            <p>24-hour coding challenge</p>
-                            <button class="event-btn">Register</button>
+        <!-- Events Section -->
+         
+        <section class="poster">
+        <h2 class="section-title">Poster</h2>
+
+                <div class="poster-card">
+                    <div class="poster-inner">
+                        <div class="poster-front">
+                            <img src="moonfall.jpg" alt="Hackathon">
                         </div>
                     </div>
                 </div>
-                <!-- Repeat for 4 more technical events -->
             </div>
-
-            <h2 class="section-title">Non-Technical Events</h2>
-            <div class="event-grid">
-                <!-- Non-Technical Events -->
-                <div class="event-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img src="images/dance.jpg" alt="Dance">
-                            <h3>Stellar Steps</h3>
+                
+            
+        </section>
+        <section class="mega">
+            <h2 class="section-title">Mega Event</h2>
+            
+            <div class="mega-card" data-tilt data-tilt-glare="true" data-tilt-max="15">
+                <img src="megaevent.jpg" alt="Image" class="mega-card__image">
+                <div class="mega-card__content">
+                    <h2 id="megetext">Unleash Your Creativity & Build the Future</h2>
+                    <p style="padding-bottom: 20px;">CYNOSURE 2025 presents the Project Expo, where aspiring innovators,problem-solvers come together to showcase groundbreaking projects and redefine possibilities. this is your platform to shine!</p>
+                    <button class="register-btn" onclick="window.open('https://forms.gle/Vi6rVrphM1qzyCJPA', '_blank')">join Now</button>
+                </div>
+            </div>
+        
+           
+         </section>
+        <section id="events" class="events-section">
+            <h2 class="section-title">Technical Events</h2>
+            <div class="event-container">
+                <!-- Technical Events -->
+                <!-- Swiper Carousel for Technical Events -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="card" data-tilt style="background-image: url('https://i.pinimg.com/736x/4f/85/32/4f85328f833b0a1ba1bb5f6a737e7712.jpg');">
+                                <div class="content">Paper Presentation</div>
+                            </div>
                         </div>
-                        <div class="card-back">
-                            <h3>Dance Competition</h3>
-                            <p>Show your moves</p>
-                            <button class="event-btn">Register</button>
+                        <div class="swiper-slide">
+                            <div class="card" data-tilt style="background-image: url('https://i.pinimg.com/736x/01/a2/0b/01a20b6227a8122131fe64485dd4e6c7.jpg');">
+                                <div class="content">Web Design</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card" data-tilt style="background-image: url('https://i.pinimg.com/474x/72/67/9a/72679a5cc96232e133aa0dec098d1851.jpg');">
+                                <div class="content">Code Debugging</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card" data-tilt style="background-image: url('https://i.pinimg.com/474x/49/c8/55/49c855437304f1f61ba12f5273e1a566.jpg');">
+                                <div class="content">Video Editing</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card" data-tilt style="background-image: url('https://i.pinimg.com/474x/4d/f4/7e/4df47e610e72647a2d39e025a7aad3db.jpg');">
+                                <div class="content">Project Expo</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+                
+            </div>
+
+              
+                    <!-- Repeat for 4 more non-technical events -->
+                
+           
+        </section>
+       
+  <h2 class="section-title">Non-Technical Events</h2>
+  
+                    <!-- Non-Technical Events -->
+                    <div class="card-carousel" data-rotate-int="0">
+                        <div class="inner-carousel">
+                          <div class="r-card">
+                            <img src="https://i.pinimg.com/736x/fb/e7/b2/fbe7b26c6d91b3393ed688e0978e9ad7.jpg" alt="IPL Auction">
+                            <h4>IPL Auction</h4>
+                          </div>
+                          <div class="r-card">
+                            <img src="https://i.pinimg.com/736x/68/57/57/68575701a87f9d4f87a022645391a630.jpg" alt="E-Sports">
+                            <h4>E-Sports</h4>
+                          </div>
+                          <div class="r-card">
+                            <img src="https://i.pinimg.com/474x/f2/28/6a/f2286aac4feb768ce4e71e35b6d9bf82.jpg" alt="Connection">
+                            <h4>Connection</h4>
+                          </div>
+                          <div class="r-card">
+                            <img src="https://i.pinimg.com/474x/34/03/5e/34035e371848e83aedde0b1de66e8f42.jpg" alt="Mehandhi">
+                            <h4>Mehandhi</h4>
+                          </div>
+                          <div class="r-card">
+                            <img src="https://i.pinimg.com/474x/fc/ee/53/fcee53cc062cc99f79068f6e2d0a42ec.jpg" alt="Treasure Hunt">
+                            <h4>Treasure Hunt</h4>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-container">
+                        <div>
+                            <img src="refer.png" alt="" class="alien">
+                            
+                            <!-- From Uiverse.io by LuisEgan --> 
+
+                        </div>
+                        <div id="card">
+                            <!-- Front Side -->
+                            <div class="card-front">
+                               
+                                <div id="left-side">
+                                    <button class="btn btn--primary " id="referButton">
+
+                                        <span class="btn-inner">
+                                          <span class="btn-label">
+                                           Click to refer
+                                          </span>
+                                          <span class="btn-blur" aria-hidden=""></span>
+                                        </span>
+                                        
+                                      </button>
+                                     
+                                  
+                                   <img src="gifts.webp" alt="swags" class="gift-box" >
+                                </div>
+                               
+                                <div class="text">
+                                    <h2> Refer & Win Exciting Rewards!🚀</h2>
+                                    <br>
+                                    
+                                    <p>Invite friends and unlock amazing gifts.</p>
+                                    <p id="referralLink">referal link</p>
+                                 
+                                </div>
+                                <button onclick="flipCard()" class="flip">Flip card</button>
+                                <h3 class="tet">Top referes can get a chance to win exciting swags and gifts </h3>
+                            </div>
+                            <!-- Back Side -->
+                            <div class="card-back">
+                                <div class="mini-card">🚀 Space Trip</div>
+                                <div class="mini-card">🎁 Special Gifts</div>
+                               
+                                
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Repeat for 4 more non-technical events -->
-            </div>
-        </div>
-    </section>
-
-    <!-- College Details Section -->
-    <section id="about" class="college-section">
-        <div class="college-info">
-            <img src="images/college-logo.png" alt="College Logo" class="college-logo">
-            <h2>Tech Galaxy Institute</h2>
-            <p>Pioneering Innovation Since 1995</p>
-        </div>
-
-        <div class="coordinators">
-            <h2>Event Coordinators</h2>
-            <div class="coordinator-cards">
-                <div class="coordinator">
-                    <div class="coordinator-img">
-                        <img src="images/coordinator1.jpg" alt="Dr. Alex Nova">
+                    <div>
+                        
                     </div>
-                    <h3>Dr. Alex Nova</h3>
-                    <p>Technical Events Head</p>
-                    <p>Department of Computer Science</p>
-                </div>
-                <div class="coordinator">
-                    <div class="coordinator-img">
-                        <img src="images/coordinator2.jpg" alt="Prof. Luna Star">
+        <!-- College Details Section -->
+        <section id="about" class="college-section">
+            
+
+            <div class="coordinators">
+                
+                <div class="coordinator-cards">
+                    <div class="coordinator">
+                        <div class="coordinator-img" data-tilt>
+                            <img src="HOD.jpg" alt="Dr.T.Thenmozhi ">
+                        </div>
+                        <h3>Dr.T.Thenmozhi
+                        </h3>
+                        
+                        <p>HOD/CSE</p>
+                        <p>KiTE</p>
                     </div>
-                    <h3>Prof. Luna Star</h3>
-                    <p>Cultural Events Head</p>
-                    <p>Department of Fine Arts</p>
+                    <div class="coordinator">
+                        <div class="coordinator-img" data-tilt>
+                            <img src="PRINCIPAL.jpeg" alt="Dr.S.Suresh Kumar">
+                        </div>
+                        <h3>Dr.S.Suresh Kumar</h3>
+                        <p>PRINCIPAL</p>
+                        <p>KiTE</p>
+                        
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer Section -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Contact Us</h4>
-                <p><i class="fas fa-envelope"></i> nova@techgalaxy.edu</p>
-                <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
-            </div>
-            <div class="footer-section">
-                <h4>Follow Us</h4>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
+        <!-- Footer Section -->
+        <footer id="contact">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Kgisl Institute Of Technology</h4>
+                    <p>KGiSL Campus,</p>
+                    <p>365-Thudiyalur Road,</p>
+                    <p>Saravanampatti,</p>
+                    <p>Coimbatore-641035</p>
                 </div>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="#">Schedule</a>
-                <a href="#">Rules</a>
-                <a href="#">FAQs</a>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CYNOSURE Symposium. All rights reserved.</p>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 CYNOSURE Symposium. All rights reserved.</p>
-        </div>
-    </footer>
+        </footer>
 
-    <script src="main.js"></script>
-</body>
-</html>
+        <script src="main.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                VanillaTilt.init(document.querySelector(".mega-card"), {
+                    max: 15,
+                    speed: 400,
+                    glare: true,
+                    "max-glare": 0.5
+                });
+            });
+            // Initialize Vanilla Tilt for the images inside the cards
+document.addEventListener("DOMContentLoaded", function () {
+    // Apply Vanilla Tilt on the images inside the cards
+    VanillaTilt.init(document.querySelectorAll(".r-card img"), {
+        max: 15,  // Max tilt angle
+        speed: 400, // Speed of tilt effect
+        glare: true, // Enable glare effect
+        "max-glare": 0.5, // Max glare intensity
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    // Apply Vanilla Tilt on the images inside the cards
+    VanillaTilt.init(document.querySelectorAll(".coordinator-img img"), {
+        max: 15,  // Max tilt angle
+        speed: 400, // Speed of tilt effect
+        glare: true, // Enable glare effect
+        "max-glare": 0.5, // Max glare intensity
+    });
+});
+
+            </script>
+            <!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+<script>
+   
+
+    var swiper = new Swiper('.swiper-container', {
+        loop: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        spaceBetween: 30,
+        centeredSlides: true,
+        slidesPerView: 3,
+    });
+    VanillaTilt.init(document.querySelectorAll(".card"), {
+        max: 15,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.5
+    });
+    function cardCarousel3d(carousel) {
+      let rotateInt = 0;
+      const cards = carousel.querySelectorAll('.r-card');
+      const size = cards.length;
+      const translateZ = 300;
+      const angle = 360 / size;
+
+      function updateCarousel() {
+        cards.forEach((card, i) => {
+          let z = i * angle + rotateInt * angle;
+          card.style.transform = `rotateY(${z}deg) translateZ(${translateZ}px)`;
+          card.classList.remove('active');
+        });
+        cards[-rotateInt % size].classList.add('active');
+      }
+      
+      cards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+          rotateInt = -index;
+          updateCarousel();
+        });
+      });
+      
+      updateCarousel();
+    }
+    document.querySelectorAll('.card-carousel').forEach(cardCarousel3d);
+    function getRandomColor() {
+            const colors = ['#FF5733', '#33FF57', '#3357FF', '#F1C40F', '#9B59B6', '#E74C3C', '#2ECC71'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+       
+        document.addEventListener('mousemove', function (event) {
+     
+            const star = document.createElement('div');
+            star.classList.add('star');
+
+        
+            star.style.backgroundColor = getRandomColor();
+
+            // Position the star at the mouse pointer
+            star.style.left = `${event.clientX}px`;
+            star.style.top = `${event.clientY}px`;
+
+            // Append the star to the body
+            document.body.appendChild(star);
+
+            // Remove the star after the animation ends
+            setTimeout(() => {
+                star.remove();
+            }, 2000); // This matches the fall animation duration
+        });
+
+        document.getElementById("referButton").addEventListener("click", function () {
+      let phoneNumber = prompt("Enter your phone number:");
+
+      if (phoneNumber && /^\d{10}$/.test(phoneNumber)) {
+        localStorage.setItem("myPhone", phoneNumber);
+
+        let referralUrl = `${window.location.origin}?ref=${phoneNumber}`;
+        
+        document.getElementById("referButton").classList.add("hidden");
+
+        let link = document.getElementById("referralLink");
+        setTimeout(() => {
+          link.innerHTML = `<a href="${referralUrl}" target="_blank">${referralUrl}</a>`;
+          link.classList.remove("hidden");
+          link.classList.add("fade-in");
+        }, 500);
+      } else {
+        alert("Please enter a valid 10-digit phone number.");
+      }
+    });
+
+    function checkReferral() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const refPhone = urlParams.get("ref");
+      const myPhone = localStorage.getItem("myPhone");
+
+      if (refPhone) {
+        if (refPhone === myPhone) {
+          alert("You cannot refer yourself!");
+          return;
+        }
+
+        let referrals = JSON.parse(localStorage.getItem("referrals") || "{}");
+        referrals[refPhone] = referrals[refPhone] ? referrals[refPhone] + 1 : 1;
+        localStorage.setItem("referrals", JSON.stringify(referrals));
+
+        alert(`Referral recorded! ${refPhone} has referred ${referrals[refPhone]} times.`);
+      }
+    }
+
+    checkReferral();
+
+
+
+</script>
+
+            
+    </body>
+    </html>

@@ -199,4 +199,112 @@ document.addEventListener('DOMContentLoaded', function() {
             document.head.appendChild(style);
         });
     }, 1000);
+});const angle = 20;
+
+const lerp = (start, end, amount) => {
+    return (1 - amount) * start + amount * end;
+};
+
+const remap = (value, oldMax, newMax) => {
+    const newValue = ((value + oldMax) * (newMax * 2)) / (oldMax * 2) - newMax;
+    return Math.min(Math.max(newValue, -newMax), newMax);
+};
+
+window.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach((card) => {
+        card.addEventListener("mousemove", (event) => {
+            const rect = card.getBoundingClientRect();
+            const centerX = (rect.left + rect.right) / 2;
+            const centerY = (rect.top + rect.bottom) / 2;
+            const posX = event.clientX - centerX;
+            const posY = event.clientY - centerY;
+            const x = remap(posX, rect.width / 2, angle);
+            const y = remap(posY, rect.height / 2, angle);
+
+            card.dataset.rotateX = x;
+            card.dataset.rotateY = -y;
+        });
+
+        card.addEventListener("mouseout", () => {
+            card.dataset.rotateX = 0;
+            card.dataset.rotateY = 0;
+        });
+    });
+
+    const update = () => {
+        cards.forEach((card) => {
+            let currentX = parseFloat(card.style.getPropertyValue('--rotateY')) || 0;
+            let currentY = parseFloat(card.style.getPropertyValue('--rotateX')) || 0;
+            const x = lerp(currentX, card.dataset.rotateX, 0.1);
+            const y = lerp(currentY, card.dataset.rotateY, 0.1);
+
+            card.style.setProperty("--rotateY", x + "deg");
+            card.style.setProperty("--rotateX", y + "deg");
+        });
+    };
+
+    setInterval(update, 1000 / 60);
+
+    // Initialize Swiper with extra left padding for the first card
+    const swiper = new Swiper('.swiper-container', {
+        slidesPerView: 3, // Show 3 cards at once
+        spaceBetween: 30,
+        loop: false,
+        centeredSlides: true, // Center the slides
+        slidesPerGroup: 3, // Move 3 slides at a time
+        initialSlide: 0, // Start from the first card
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        },
+    });
 });
+// Scene setup
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, 500 / 700, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true });
+renderer.setSize(450, 500);
+document.getElementById('left-side').appendChild(renderer.domElement);
+
+// Load GLTF 3D Rocket Model
+const loader = new THREE.GLTFLoader();
+let rocket;
+
+loader.load('models/rocket.glb', function (gltf) {
+    rocket = gltf.scene;
+    rocket.scale.set(2, 2, 2);  // Adjust rocket size
+    rocket.position.y = -1;  // Center the model
+    scene.add(rocket);
+}, undefined, function (error) {
+    console.error("Error loading the model:", error);
+});
+
+// Lighting
+const light = new THREE.PointLight(0xffffff, 1, 100);
+light.position.set(5, 5, 5);
+scene.add(light);
+
+// Camera Position
+camera.position.z = 6;
+
+// Hover Animation (Tilt Effect)
+document.querySelector(".card-container").addEventListener("mousemove", (event) => {
+    let x = (event.clientX / window.innerWidth) * 2 - 1;
+    let y = -(event.clientY / window.innerHeight) * 2 + 1;
+    if (rocket) {
+        rocket.rotation.y = x * 0.5;
+        rocket.rotation.x = y * 0.5;
+    }
+});
+
+// Animation Loop
+function animate() {
+    requestAnimationFrame(animate);
+    if (rocket) {
+        rocket.rotation.y  += 0.005;  // Slow auto-rotation
+    }
+    renderer.render(scene, camera);
+}
+animate();

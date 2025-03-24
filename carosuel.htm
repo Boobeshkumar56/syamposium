@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Pointer with Falling Stars</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+            position: relative;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            width: 5px;
+            height: 5px;
+            animation: fall 2s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(300px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Function to track the mouse movement and create falling stars
+        document.addEventListener('mousemove', function (event) {
+            // Create a star element
+            const star = document.createElement('div');
+            star.classList.add('star');
+
+            // Position the star at the mouse pointer
+            star.style.left = `${event.clientX}px`;
+            star.style.top = `${event.clientY}px`;
+
+            // Append the star to the body
+            document.body.appendChild(star);
+
+            // Remove the star after the animation ends
+            setTimeout(() => {
+                star.remove();
+            }, 2000); // This matches the fall animation duration
+        });
+    </script>
+</body>
+</html>

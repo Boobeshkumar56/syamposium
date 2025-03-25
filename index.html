@@ -17,8 +17,11 @@
         <script type="module" src="https://unpkg.com/@google/model-viewer"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
+<script src="vanta.halo.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 
 
         <style>
@@ -27,7 +30,9 @@
 .alien{
     position: absolute;
     z-index: 1;
-    bottom:1px;
+    bottom:-2px;
+    width: 15rem;
+    left:350px
 
     
     
@@ -67,9 +72,10 @@
     border-radius: 15px;
     display: flex;
     align-items: center;
-    
+    background-image: url(./background.jpg);
+    background-size: cover;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
-    background: url('https://i.pinimg.com/474x/b7/04/2a/b7042af05a5c8e445d1e547fc00e549b.jpg') no-repeat center center/cover;
+    
 }
 
 /* Back Side */
@@ -93,6 +99,7 @@
     position: relative;
     left:10rem;
     bottom:-12rem;
+    opacity: 1;
 
 }
 .card-container .card {
@@ -181,6 +188,7 @@ canvas {
       align-items: center;
       height: 100vh;
       perspective: 2000px;
+      margin-top: -5rem;
     }
     .inner-carousel {
       position: relative;
@@ -193,30 +201,29 @@ canvas {
     position: absolute;
     width: 250px;
     height: 350px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(15px);
+   
     border-radius: 15px;
-    box-shadow: 0px 10px 15px rgba(0, 54, 90, 0.3);
+    
     text-align: center;
     color: black;
     padding: 10px;
     transition: transform 0.5s ease-out, box-shadow 0.5s ease-out; /* Add smooth transform and shadow transition */
-    border: 1px solid rgba(255, 255, 255, 0.3);
+   
     cursor: pointer;
 }
 
 .r-card img {
     width: 100%;
-    height: 200px;
+    height:fit-content;
     border-radius: 10px;
-    object-fit: cover;
+    
     transition: transform 0.3s ease; /* Smooth transition for the tilt effect */
 }
 
 /* Hover effect: the card lifts up */
 .r-card:hover {
     transform: translateY(-10px); /* Lifts the card */
-    box-shadow: 0px 20px 30px rgba(0, 54, 90, 0.3); /* Adds a shadow when hovering */
+    /* Adds a shadow when hovering */
 }
 
 .r-card:hover img {
@@ -226,7 +233,7 @@ canvas {
       margin-top: 10px;
       font-size: 18px;
       font-weight: bold;
-      color: black;
+      color: rgb(255, 255, 255);
     }
     .tet{
         padding-left: 5rem;
@@ -299,6 +306,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 zoom: 1.00
             });
         });
+      
+
         function flipCard() {
   var cardContainer = document.querySelector('.card-container');
   cardContainer.classList.toggle('flipped');
@@ -308,7 +317,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     cardContainer.classList.toggle('flipped');
   }, 5000);
 }
-
         
         </script>
     </head>
@@ -320,11 +328,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
         <!-- Header Section -->
         <header>
             <nav class="nav-container">
-                <div class="logo">CYNOSURE 2025</div>
+                
                 <div class="college-info">
                     <img src="KITE.png" alt="College Logo"style="width:100px; height:50px" class="-logo">
                     
                 </div>
+                <div class="logo">CYNOSURE 2025</div>
                 <div class="nav-toggle" id="navToggle">
                     <span></span><span></span><span></span>
                 </div>
@@ -391,33 +400,58 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <div class="card" data-tilt style="background-image: url('https://i.pinimg.com/736x/4f/85/32/4f85328f833b0a1ba1bb5f6a737e7712.jpg');">
+                            <div class="card" style="background-image: url('./images/paper.png');">
                                 <div class="content">Paper Presentation</div>
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="card" data-tilt style="background-image: url('https://i.pinimg.com/736x/01/a2/0b/01a20b6227a8122131fe64485dd4e6c7.jpg');">
+                            <div class="card" style="background-image: url('./images/webdesignn.png');">
                                 <div class="content">Web Design</div>
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="card" data-tilt style="background-image: url('https://i.pinimg.com/474x/72/67/9a/72679a5cc96232e133aa0dec098d1851.jpg');">
+                            <div class="card" style="background-image: url('./images/debug.png');">
                                 <div class="content">Code Debugging</div>
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="card" data-tilt style="background-image: url('https://i.pinimg.com/474x/49/c8/55/49c855437304f1f61ba12f5273e1a566.jpg');">
+                            <div class="card" style="background-image: url('./images/video.png');">
                                 <div class="content">Video Editing</div>
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="card" data-tilt style="background-image: url('https://i.pinimg.com/474x/4d/f4/7e/4df47e610e72647a2d39e025a7aad3db.jpg');">
+                            <div class="card" style="background-image: url('images/project\ expo.png');">
                                 <div class="content">Project Expo</div>
                             </div>
                         </div>
-                        
+                
+                        <!-- Duplicate slides for smooth infinite scroll -->
+                        <div class="swiper-slide">
+                            <div class="card" style="background-image: url('images/paper.png');">
+                                <div class="content">Paper Presentation</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card" style="background-image: url('images/webdesignn.png');">
+                                <div class="content">Web Design</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card" style="background-image: url('images/debug.png');">
+                                <div class="content">Code Debugging</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card" style="background-image: url('images/video.png');">
+                                <div class="content">Video Editing</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card" style="background-image: url('images/project\ expo.png');">
+                                <div class="content">Project Expo</div>
+                            </div>
+                        </div>
                     </div>
-                   
                 </div>
                 
             </div>
@@ -434,37 +468,39 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     <div class="card-carousel" data-rotate-int="0">
                         <div class="inner-carousel">
                           <div class="r-card">
-                            <img src="https://i.pinimg.com/736x/fb/e7/b2/fbe7b26c6d91b3393ed688e0978e9ad7.jpg" alt="IPL Auction">
-                            <h4>IPL Auction</h4>
+                            <img src="images/6.png" alt="IPL Auction">
+                            
                           </div>
                           <div class="r-card">
-                            <img src="https://i.pinimg.com/736x/68/57/57/68575701a87f9d4f87a022645391a630.jpg" alt="E-Sports">
-                            <h4>E-Sports</h4>
+                            <img src="images/esport.png" alt="E-Sports">
+                           
+                           
                           </div>
                           <div class="r-card">
-                            <img src="https://i.pinimg.com/474x/f2/28/6a/f2286aac4feb768ce4e71e35b6d9bf82.jpg" alt="Connection">
-                            <h4>Connection</h4>
+                            <img src="images/tech connection.png" alt="Connection">
+                           
+                           
                           </div>
                           <div class="r-card">
-                            <img src="https://i.pinimg.com/474x/34/03/5e/34035e371848e83aedde0b1de66e8f42.jpg" alt="Mehandhi">
-                            <h4>Mehandhi</h4>
+                            <img src="images/mehendi.png" alt="Mehandhi">
+                           
                           </div>
                           <div class="r-card">
-                            <img src="https://i.pinimg.com/474x/fc/ee/53/fcee53cc062cc99f79068f6e2d0a42ec.jpg" alt="Treasure Hunt">
-                            <h4>Treasure Hunt</h4>
+                            <img src="images/tresure.png" alt="Treasure Hunt">
+                           
                           </div>
                         </div>
                       </div>
                       <div class="card-container">
                         <div>
-                            <img src="refer.png" alt="" class="alien">
+                            <img src="referr.png" alt="" class="alien">
                             
                             <!-- From Uiverse.io by LuisEgan --> 
 
                         </div>
                         <div id="card">
                             <!-- Front Side -->
-                            <div class="card-front">
+                            <div class="card-front" id="card-front">
                                
                                 <div id="left-side">
                                     <button class="btn btn--primary " id="referButton">
@@ -483,14 +519,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
                                 </div>
                                
                                 <div class="text">
-                                    <h2> Refer & Win Exciting Rewards!🚀</h2>
+                                    <h2 style="margin-top: 1rem;"> Refer & Win Exciting Rewards!🚀</h2>
                                     <br>
                                     
                                     <p>Invite friends and unlock amazing gifts.</p>
                                     <p id="referralLink">referal link</p>
                                  
                                 </div>
-                                <button onclick="flipCard()" class="flip">Flip card</button>
+                              
                                 <h3 class="tet">Top referes can get a chance to win exciting swags and gifts </h3>
                             </div>
                             <!-- Back Side -->
@@ -710,6 +746,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     checkReferral();
+    gsap.registerPlugin(ScrollTrigger);
+
+gsap.utils.toArray("body *").forEach((el) => {
+    gsap.from(el, {
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: el,
+            start: "top 90%", // Start fading in when element enters viewport
+            toggleActions: "play none none reverse", // Play when in view, reverse when out
+        }
+    });
+});
+
 
 
 

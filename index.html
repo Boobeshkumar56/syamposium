@@ -366,15 +366,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
          
         <section class="poster">
         <h2 class="section-title">Poster</h2>
-
-                <div class="poster-card">
-                    <div class="poster-inner">
-                        <div class="poster-front">
-                            <img src="moonfall.jpg" alt="Hackathon">
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
+        <img src="./images/mainposter.jpeg" alt="event-poster " id="poster">
+          
                 
             
         </section>
@@ -420,8 +414,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="card" style="background-image: url('images/project\ expo.png');">
-                                <div class="content">Project Expo</div>
+                            <div class="card" style="background-image: url('images/tech\ connection.png');">
+                                <div class="content">Tech Connection</div>
                             </div>
                         </div>
                 
@@ -447,8 +441,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="card" style="background-image: url('images/project\ expo.png');">
-                                <div class="content">Project Expo</div>
+                            <div class="card" style="background-image: url('images/tech\ connection.png');">
+                                <div class="content">Tech Connection</div>
                             </div>
                         </div>
                     </div>
@@ -477,7 +471,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                            
                           </div>
                           <div class="r-card">
-                            <img src="images/tech connection.png" alt="Connection">
+                            <img src="images/nontechconnection.png" alt="Connection">
                            
                            
                           </div>
@@ -576,7 +570,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>Contact Us</h4>
-                    <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+                    <p><i class="fas fa-phone"></i> +91 86103 58180</p>
                 </div>
                 <div class="footer-section">
                     <h4>Follow Us</h4>
@@ -760,6 +754,13 @@ gsap.utils.toArray("body *").forEach((el) => {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        window.location.href = "./main.html";
+    }
+});
+
 
 
 
